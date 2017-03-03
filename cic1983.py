@@ -1,6 +1,8 @@
 import json
 import logging
+import os
 import re
+import aiohttp
 import discord
 
 def canon_to_str(c_num, p_num1=None, p_num2=None, n_num1=None, n_num2=None):
@@ -117,7 +119,10 @@ with open('cic1983.json') as f:
     canons = json.load(f)
 canons = {k: v for d in canons for k, v in d.items()}
 
-client = discord.Client()
+print(os.environ.get('PORT', None))
+
+client = discord.Client(connector=aiohttp.TCPConnector(local_addr=(
+                        None, os.environ.get('PORT', None))))
 
 @client.event
 async def on_message(message):
