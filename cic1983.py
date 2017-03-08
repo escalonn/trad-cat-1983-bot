@@ -119,7 +119,7 @@ with open('cic1983.json') as f:
     canons = json.load(f)
 canons = {k: v for d in canons for k, v in d.items()}
 
-print(os.environ.get('PORT', None))
+print(repr(os.environ.get('PORT', None)))
 
 client = discord.Client(connector=aiohttp.TCPConnector(local_addr=(
                         None, os.environ.get('PORT', None))))
