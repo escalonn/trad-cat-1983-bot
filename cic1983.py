@@ -5,9 +5,6 @@ import re
 import aiohttp
 import discord
 
-print('hello i am games by')
-print('waking up for the first time')
-
 def canon_to_str(c_num, p_num1=None, p_num2=None, n_num1=None, n_num2=None):
     strs = ['**Can. ', c_num, '** — ']
     canon = canons[c_num]
@@ -122,10 +119,10 @@ with open('cic1983.json') as f:
     canons = json.load(f)
 canons = {k: v for d in canons for k, v in d.items()}
 
-print(repr(os.environ.get('PORT', None)))
+port = int(os.environ.get('PORT')) if os.environ.get('PORT') else None
 
-client = discord.Client(connector=aiohttp.TCPConnector(local_addr=(
-                        None, os.environ.get('PORT', None))))
+client = discord.Client(
+    connector=aiohttp.TCPConnector(local_addr=(None, port)))
 
 @client.event
 async def on_message(message):
