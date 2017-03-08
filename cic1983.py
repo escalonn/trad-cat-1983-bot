@@ -119,10 +119,13 @@ with open('cic1983.json') as f:
     canons = json.load(f)
 canons = {k: v for d in canons for k, v in d.items()}
 
-port = int(os.environ.get('PORT')) if os.environ.get('PORT') else None
+if 'PORT' in os.environ:
+    port = int(os.environ['PORT'])
+    connector = aiohttp.TCPConnector(local_addr=('0.0.0.0', port))
+else:
+    connector = None
 
-client = discord.Client(
-    connector=aiohttp.TCPConnector(local_addr=('localhost', port)))
+client = discord.Client(connector=connector)
 
 @client.event
 async def on_message(message):
