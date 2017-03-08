@@ -5,6 +5,9 @@ import re
 import aiohttp
 import discord
 
+print('hello i am games by')
+print('waking up for the first time')
+
 def canon_to_str(c_num, p_num1=None, p_num2=None, n_num1=None, n_num2=None):
     strs = ['**Can. ', c_num, '** — ']
     canon = canons[c_num]
