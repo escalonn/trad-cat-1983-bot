@@ -122,6 +122,7 @@ canons = {k: v for d in canons for k, v in d.items()}
 if 'PORT' in os.environ:
     port = int(os.environ['PORT'])
     connector = aiohttp.TCPConnector(local_addr=('0.0.0.0', port))
+    print('Using port {}'.format(port))
 else:
     connector = None
 
