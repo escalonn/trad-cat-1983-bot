@@ -122,8 +122,7 @@ canons = {k: v for d in canons for k, v in d.items()}
 port = int(os.environ.get('PORT')) if os.environ.get('PORT') else None
 
 client = discord.Client(
-    # connector=aiohttp.TCPConnector(local_addr=(None, port)))
-    connector=aiohttp.TCPConnector(port=port))
+    connector=aiohttp.TCPConnector(local_addr=('localhost', port)))
 
 @client.event
 async def on_message(message):
